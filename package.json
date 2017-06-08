@@ -1,0 +1,48 @@
+{
+  "name": "quokka-signet-explorer",
+  "version": "1.0.0",
+  "description": "Quokka plugin for exploring API endpoints to identify function signatures",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha ./test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmstead/quokka-signet-explorer.git"
+  },
+  "keywords": [
+    "signet",
+    "quokka",
+    "api",
+    "exploration",
+    "signatures",
+    "contract"
+  ],
+  "author": "Chris Stead",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/cmstead/quokka-signet-explorer/issues"
+  },
+  "quokka": {
+    "plugins": [
+      "quokka-mocha-bdd",
+      "./index.js"
+    ],
+    "quokka-mocha-bdd": {
+      "interface": "bdd"
+    }
+  },
+  "homepage": "https://github.com/cmstead/quokka-signet-explorer#readme",
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
+    "quokka-mocha-bdd": "^1.1.0"
+  },
+  "dependencies": {
+    "esprima": "^3.1.3",
+    "signet": "^3.11.3"
+  }
+}
