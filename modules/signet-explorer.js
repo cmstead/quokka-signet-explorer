@@ -64,8 +64,6 @@ function exploreValue(value) {
     exploreType = isFunction(value) ? exploreFunction : exploreType;
     exploreType = isObjectInstance(value) ? exploreProperties : exploreType;
 
-    console.log(exploreType === exploreFunction);
-
     return exploreType(value);
 }
 
