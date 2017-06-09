@@ -31,7 +31,8 @@ function getParams(body) {
 }
 
 function buildSignature(fn){
-    let body = esprima.parse(fn.toString()).body[0];
+    let parseableStr = '(' + fn.toString() + ')()';
+    let body = esprima.parse(parseableStr).body[0].expression.callee;
     let params = getParams(body);
 
     const signatureParts = [
@@ -48,7 +49,7 @@ function exploreFunction(fn) {
     }
 
     return isString(fn.signature) ? fn.signature : buildSignature(fn);
-};
+}
 
 function exploreProperties(obj) {
     let setProp = (result, key) => (result[key] = exploreValue(obj[key]), result);
