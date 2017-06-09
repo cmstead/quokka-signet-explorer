@@ -1,6 +1,6 @@
 {
   "name": "quokka-signet-explorer",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Quokka plugin for exploring API endpoints to identify function signatures",
   "main": "index.js",
   "directories": {
