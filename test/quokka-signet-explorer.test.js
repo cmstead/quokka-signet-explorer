@@ -14,6 +14,7 @@ describe('QuokkaSignetExplorer', function () {
 
         it('should return signet-formatted signature for unsigned function', function () {
             function add(a, b = 1) { return a + b; }
+            console.log(exploreFunction(add));
             assert.equal(exploreFunction(add), 'a:*, b:[number] => *');
         });
 
@@ -49,7 +50,9 @@ describe('QuokkaSignetExplorer', function () {
                 identity: 'a:* => *'
             }
 
-            const actual = exploreApi(api);
+
+            let actual = exploreValue(api);
+            console.log(exploreValue(api));
 
             assert.equal(JSON.stringify(actual), JSON.stringify(expected));
         });

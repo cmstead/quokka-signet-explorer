@@ -4,6 +4,10 @@ const signet = require('signet')();
 const signetAssembler = require('signet-assembler');
 const esprima = require('esprima');
 
+const isFunction = signet.isTypeOf('function');
+const isObjectInstance = signet.isTypeOf('composite<not<null>, object>');
+const isString = signet.isTypeOf('string');
+
 function buildType(node) {
     let typeDef = {
         name: '',
@@ -23,7 +27,7 @@ function buildType(node) {
 }
 
 function getParams(body) {
-    return signet.isTypeOf('object')(body.params) ? body.params : body.expression.params;
+    return isObjectInstance(body.params) ? body.params : body.expression.params;
 }
 
 function buildSignature(fn){
@@ -39,28 +43,30 @@ function buildSignature(fn){
 }
 
 function exploreFunction(fn) {
-    if(signet.isTypeOf('not<function>')(fn)) {
+    if(!isFunction(fn)) {
         throw new Error('Unable to process value of type ' + typeof fn);
     }
 
-    return signet.isTypeOf('string')(fn.signature) ? fn.signature : buildSignature(fn);
+    return isString(fn.signature) ? fn.signature : buildSignature(fn);
 };
 
 function exploreProperties(obj) {
-    return Object.keys(obj).reduce(function (result, key) {
-        result[key] = exploreValue(obj[key]);
-        return result;
-    }, {});
+    let setProp = (result, key) => (result[key] = exploreValue(obj[key]), result);
+    return Object.keys(obj).reduce(setProp, {});
 }
 
-function exploreValue(obj) {
-    if(signet.isTypeOf('function')(obj)) {
-        return exploreFunction(obj);
-    } else if(signet.isTypeOf('composite<not<null>, object>')(obj)) {
-        return exploreProperties(obj);
-    } else {
-        return typeof obj;
-    }
+function getValueType(value) {
+    return value === null ? 'null' : typeof value;
+}
+
+function exploreValue(value) {
+    let exploreType = getValueType;
+    exploreType = isFunction(value) ? exploreFunction : exploreType;
+    exploreType = isObjectInstance(value) ? exploreProperties : exploreType;
+
+    console.log(exploreType === exploreFunction);
+
+    return exploreType(value);
 }
 
 module.exports = {
