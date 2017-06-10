@@ -2,7 +2,7 @@
 
 const assert = require('chai').assert;
 const signet = require('signet')();
-const esprima = require('esprima');
+
 require('../index').before();
 
 describe('QuokkaSignetExplorer', function () {
@@ -29,7 +29,7 @@ describe('QuokkaSignetExplorer', function () {
         it('should not blow up when a function is curried', function () {
             function myFn(a) {
                 return function (b) {
-                    return 'something';
+                    return 'something' + a + b;
                 };
             }
 

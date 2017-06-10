@@ -13,6 +13,10 @@
         "afterEach": false,
         "module": false,
         "console": false,
-        "global": false
+        "global": false,
+        "exploreFunction": false,
+        "exploreApi": false,
+        "exploreValue": false,
+        "runQuokkaMochaBdd": false
     }
 }
