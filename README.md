@@ -68,8 +68,8 @@ Three functions are exposed on the node global scope.  In any code you are runni
         identity: a => a
     };
 
-    exploreFunction(api.add); // a:*, b:[number] => *
-    exploreApi(api);
+    console.log(exploreFunction(api.add)); // a:*, b:[number] => *
+    console.log(exploreApi(api));
 
     /*
      * {

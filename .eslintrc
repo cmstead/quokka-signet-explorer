@@ -17,6 +17,10 @@
         "exploreFunction": false,
         "exploreApi": false,
         "exploreValue": false,
-        "runQuokkaMochaBdd": false
+        "runQuokkaMochaBdd": false,
+        "signet": false,
+        "signetAssembler": false,
+        "esprima": false,
+        "window": false
     }
 }
