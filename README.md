@@ -86,6 +86,10 @@ Three functions are exposed on the node global scope.  In any code you are runni
 
 ## Changelog ##
 
+### 1.3.0 ###
+
+- Enhanced reporting to handle rest arguments
+
 ### v1.0.0 ###
 
 - First release of Quokka Signet Explorer

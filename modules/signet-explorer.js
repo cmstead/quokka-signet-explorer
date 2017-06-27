@@ -34,8 +34,11 @@
             optional: false
         };
 
+
         if (node.type === 'Identifier') {
             typeDef.name = node.name;
+        } else if (node.type === 'RestElement') {
+            typeDef.name = '...' + node.argument.name;
         } else {
             typeDef.name = node.left.name;
             typeDef.type = typeof node.right.value;
